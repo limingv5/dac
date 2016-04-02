@@ -3,8 +3,6 @@ module.exports = function (pxcssfile, reqOpt, param, cb) {
   var helper = require("../lib/util");
   var plugins = require("../lib/less-plugins")(less);
   less.functions.functionRegistry.addMultiple(plugins.functions);
-  
-  var MIME = "text/css";
 
   var xcssfile = pxcssfile.replace(/(\.less)\.css$/, "$1");
   var renderOpt = {
@@ -16,22 +14,22 @@ module.exports = function (pxcssfile, reqOpt, param, cb) {
   var lesstext = helper.getUnicode(xcssfile);
   if (lesstext !== null) {
     less.render(lesstext, renderOpt, function (e, result) {
-      if (!e) {
-        cb(e, result.css, xcssfile, MIME);
+      if (e) {
+        console.log(e);
+        cb(e, "/* " + xcssfile + " */");
       }
       else {
-        console.log(e);
-        cb(e, "/* " + xcssfile + " */", xcssfile, MIME);
+        cb(e, result.css);
       }
     });
   }
   else {
     lesstext = helper.getUnicode(pxcssfile);
     if (lesstext !== null) {
-      cb(false, lesstext, pxcssfile, MIME);
+      cb(null, lesstext);
     }
     else {
-      cb({code: "Not Found"});
+      cb({code: "Not Found"}, lesstext, true);
     }
   }
 };

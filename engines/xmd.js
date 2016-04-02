@@ -8,20 +8,20 @@ module.exports = function (absPath, reqOpt, param, cb) {
   var content = typeof absPath == "object" ? absPath.content : helper.getUnicode(absPath);
 
   if (content === null) {
-    cb({code: "PASS Engine"});
+    cb({code: -1}, content, true);
   }
   else {
-    var MIME = "application/javascript";
-    var path = require("path").relative('/', reqOpt.path);
+    var path    = require("path").relative('/', reqOpt.path);
+    var pkgName = param.anonymous ? '' : '"' + helper.filteredUrl(reqOpt.path, param.filter) + '",';
 
     if (helper.matchPath(path, param.cmd) && ignoreText(content)) {
-      cb(null, "define(function(require,exports,module){" + content + "\n});", absPath, MIME);
+      cb(null, "define(" + pkgName + "function(require,exports,module){" + content + "\n});");
     }
     else if (helper.matchPath(path, param.kmd) && ignoreText(content)) {
-      cb(null, "KISSY.add(function(S,require,exports,module){" + content + "\n});", absPath, MIME);
+      cb(null, "KISSY.add(" + pkgName + "function(S,require,exports,module){" + content + "\n});");
     }
     else {
-      cb(null, content, absPath, MIME);
+      cb(null, content, true);
     }
   }
 };

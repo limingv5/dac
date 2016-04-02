@@ -3,8 +3,6 @@ module.exports = function (htmljsfile, reqOpt, param, cb) {
   var juicer = require("juicer");
   var pathLib = require("path");
 
-  var MIME = "application/javascript";
-
   var htmlfile = htmljsfile.replace(/(\.html)\.js$|(\.tpl)\.js$/, "$1$2");
   var tpl = helper.getUnicode(htmlfile);
   if (tpl !== null) {
@@ -47,18 +45,18 @@ module.exports = function (htmljsfile, reqOpt, param, cb) {
         flag = true;
       }
 
-      return "function(_,_method){" +
+      return "module.exports=function(_,_method){" +
         _method.join('') +
         (flag ? ("_method.__escapehtml={" + escapehtml.join(',') + "};") : '') +
         fn_body + "};";
     });
 
-    cb(false, helper.wrapper(compiled, reqOpt.path, param), htmlfile, MIME);
+    cb(false, compiled);
   }
   else {
     tpl = helper.getUnicode(htmljsfile);
     if (tpl !== null) {
-      cb(false, tpl, htmljsfile, MIME);
+      cb(false, tpl);
     }
     else {
       cb({code: "Not Found"});

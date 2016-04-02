@@ -4,7 +4,7 @@ module.exports = function (absPath, reqOpt, param, cb) {
 
   absPath = absPath.replace(/\.html$/, '');
 
-  lessLayer(absPath, reqOpt, param, function (err, compiled, pxcssfile) {
+  lessLayer(absPath, reqOpt, param, function (err, compiled) {
     if (err) {
       cb(err);
     }
@@ -13,7 +13,7 @@ module.exports = function (absPath, reqOpt, param, cb) {
         '<template><style>' +
         compiled +
         '</style></template></dom-module>';
-      cb(null, compiled, pxcssfile, "text/html");
+      cb(null, compiled);
     }
   });
 };
