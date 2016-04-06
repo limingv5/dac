@@ -1,6 +1,6 @@
 {
   "name": "dac",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "Dynamic Assets Compiler",
   "main": "index.js",
   "scripts": {},

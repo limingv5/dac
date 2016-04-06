@@ -1,7 +1,7 @@
 module.exports = function (htmljsfile, reqOpt, param, cb) {
-  var helper = require("../lib/util");
-  var juicer = require("juicer");
   var pathLib = require("path");
+  var juicer = require("juicer");
+  var helper = require("../lib/util");
 
   var htmlfile = htmljsfile.replace(/(\.html)\.js$|(\.tpl)\.js$/, "$1$2");
   var tpl = helper.getUnicode(htmlfile);
@@ -45,7 +45,7 @@ module.exports = function (htmljsfile, reqOpt, param, cb) {
         flag = true;
       }
 
-      return "module.exports=function(_,_method){" +
+      return (param.compatible ? "return " : "module.exports=") + "function(_,_method){" +
         _method.join('') +
         (flag ? ("_method.__escapehtml={" + escapehtml.join(',') + "};") : '') +
         fn_body + "};";
