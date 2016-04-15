@@ -4,7 +4,7 @@ module.exports = function (absPath, reqOpt, param, cb) {
 
   var toString = function (compiled) {
     var styles = new CleanCSS({compatibility:"ie7"}).minify(compiled).styles;
-    styles = styles.replace(/"|\\\d/g, function (all) {
+    styles = styles.replace(/"|\\\d|\\e/g, function (all) {
       return '\\' + all;
     });
     return '"' + styles + '"';
