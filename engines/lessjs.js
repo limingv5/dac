@@ -12,7 +12,7 @@ module.exports = function (absPath, filteredUrl, reqOpt, param, cb) {
 
   absPath = absPath.replace(/\.js$/, '');
 
-  lessLayer(absPath, reqOpt, param, function (err, compiled) {
+  lessLayer(absPath, filteredUrl, reqOpt, param, function (err, compiled) {
     if (err) {
       cb(err);
     }
