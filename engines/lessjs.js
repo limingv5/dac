@@ -1,4 +1,4 @@
-module.exports = function (absPath, reqOpt, param, cb) {
+module.exports = function (absPath, filteredUrl, reqOpt, param, cb) {
   var lessLayer = require("./less");
   var CleanCSS = require("clean-css");
 

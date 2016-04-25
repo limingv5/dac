@@ -1,4 +1,4 @@
-module.exports = function (htmljsfile, reqOpt, param, cb) {
+module.exports = function (htmljsfile, filteredUrl, reqOpt, param, cb) {
   var pathLib = require("path");
   var juicer = require("juicer");
   var helper = require("../lib/util");
@@ -8,7 +8,7 @@ module.exports = function (htmljsfile, reqOpt, param, cb) {
   if (tpl !== null) {
     tpl = tpl.replace(/<!--\s{0,}#def([\s\S]*?)-->/gi, '');
     tpl = tpl.replace(/<!--\s{0,}#eachInclude[^\->]*?file\s{0,}=\s{0,}(["'])\s{0,}([^"']*?)\s{0,}\1\s{1,}(.+)\s{1,}as\s{1,}(.+)[^>]*?-->/gi, function (i, m1, m2, m3, m4) {
-      var tempPath = pathLib.join(htmljsfile.replace(reqOpt.path, ''), m2);
+      var tempPath = pathLib.join(htmljsfile.replace(filteredUrl, ''), m2);
       return "{@each " + m3 + " as " + m4 + "}" + (helper.getUnicode(tempPath) || '') + "{@/each}";
     });
 

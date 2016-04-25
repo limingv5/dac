@@ -1,4 +1,4 @@
-module.exports = function (absPath, reqOpt, param, cb) {
+module.exports = function (absPath, filteredUrl, reqOpt, param, cb) {
   var helper = require("../lib/util");
 
   var ignoreText = function (content) {
@@ -11,8 +11,8 @@ module.exports = function (absPath, reqOpt, param, cb) {
     cb({code: -1}, content, true);
   }
   else {
-    var path    = require("path").relative('/', reqOpt.path);
-    var pkgName = param.anonymous ? '' : '"' + helper.filteredUrl(reqOpt.path, param.filter) + '",';
+    var path    = require("path").relative('/', filteredUrl);
+    var pkgName = param.anonymous ? '' : '"' + helper.filteredUrl(filteredUrl, param.filter) + '",';
 
     if (helper.matchPath(path, param.cmd) && ignoreText(content)) {
       cb(null, "define(" + pkgName + "function(require,exports,module){" + content + "\n});");

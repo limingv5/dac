@@ -1,4 +1,4 @@
-module.exports = function (htmljsfile, reqOpt, param, cb) {
+module.exports = function (htmljsfile, filteredUrl, reqOpt, param, cb) {
   var swig = require("swig");
   var helper = require("../lib/util");
 

@@ -1,4 +1,4 @@
-module.exports = function (absPath, reqOpt, param, cb) {
+module.exports = function (absPath, filteredUrl, reqOpt, param, cb) {
   var helper = require("../lib/util");
 
   var content = typeof absPath == "object" ? absPath.content : helper.getUnicode(absPath);
@@ -6,7 +6,7 @@ module.exports = function (absPath, reqOpt, param, cb) {
   if (content === null) {
     cb({code: -1}, content, true);
   }
-  else if (helper.matchPath(require("path").relative('/', reqOpt.path), param.target)) {
+  else if (helper.matchPath(require("path").relative('/', filteredUrl), param.target)) {
     var babel  = require("babel-core");
     var es2015 = require("babel-preset-es2015");
     var stage3 = require("babel-preset-stage-3");

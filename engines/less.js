@@ -1,4 +1,4 @@
-module.exports = function (pxcssfile, reqOpt, param, cb) {
+module.exports = function (pxcssfile, filteredUrl, reqOpt, param, cb) {
   var less = require("less");
   var helper = require("../lib/util");
   var plugins = require("../lib/less-plugins")(less);
