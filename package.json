@@ -1,6 +1,6 @@
 {
   "name": "dac",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "Dynamic Assets Compiler",
   "main": "index.js",
   "scripts": {},
@@ -33,12 +33,12 @@
     "babel-template": "~6.7.0",
     "babel-traverse": "~6.7.4",
     "babel-types": "~6.7.2",
-    "clean-css": "~3.4.10",
+    "clean-css": "~3.4.16",
+    "globule": "~1.0.0",
     "iconv-lite": "~0.4.13",
     "is-utf8": "~0.2.1",
-    "juicer": "~0.6.13",
+    "juicer": "~0.6.14",
     "less": "~2.6.1",
-    "minimatch": "~3.0.0",
     "swig": "~1.4.2"
   },
   "author": "limingv5",
