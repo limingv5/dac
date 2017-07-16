@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "babel-code-frame": "~6.7.4",
-    "babel-core": "~6.7.4",
+    "babel-core": "^6.25.0",
     "babel-helper-define-map": "~6.6.5",
     "babel-helper-function-name": "~6.6.0",
     "babel-helper-get-function-arity": "~6.6.5",
